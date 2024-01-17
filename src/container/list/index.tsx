@@ -23,6 +23,9 @@ const List = async () => {
           <div className="list-item" key={id}>
             <DetailLink id={id} />
             <Link href={`/detail/${id}`}></Link>
+            <Link href={`/edit/${id}`} className="list-btn">
+              ✏️
+            </Link>
             <h4>{title}</h4>
             <p>{content}</p>
           </div>
