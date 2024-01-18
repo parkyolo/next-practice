@@ -13,6 +13,11 @@
   margin-bottom: 5px;
   box-shadow: rgb(224, 224, 224) 0px 2px 4px 0px;
 }
+/* 애니메이션 동작 전 스타일 */
+.list-item {
+  opacity: 1;
+  transition: all 1s;
+}
 .list-item h4 {
   font-size: 20px;
   font-weight: 800;
