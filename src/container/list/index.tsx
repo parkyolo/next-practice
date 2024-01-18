@@ -3,6 +3,7 @@ import { connectDB } from '@/utils/database';
 import { Db } from 'mongodb';
 import Link from 'next/link';
 import DetailLink from './DetailLink';
+import ListItem from './ListItem';
 
 const List = async () => {
   // DB 연결
@@ -15,22 +16,8 @@ const List = async () => {
 
   return (
     <div className="list-bg">
-      {result.map((value: Article) => {
-        const { _id, title, content } = value;
-        const id: string = _id.toString();
-
-        return (
-          <div className="list-item" key={id}>
-            <DetailLink id={id} />
-            <Link href={`/detail/${id}`}></Link>
-            <Link href={`/edit/${id}`} className="list-btn">
-              ✏️
-            </Link>
-            <h4>{title}</h4>
-            <p>{content}</p>
-          </div>
-        );
-      })}
+      {/* 객체를 props로 넘겨주기 위해 직렬화 */}
+      <ListItem result={JSON.stringify(result)} />
     </div>
   );
 };
