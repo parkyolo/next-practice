@@ -19,10 +19,7 @@ const ListItem = (props: { result: string }) => {
             </Link>
             <button
               onClick={(e) => {
-                fetch('/api/post/delete', {
-                  method: 'DELETE',
-                  body: id,
-                }).then(() => {
+                fetch(`/api/post/delete?id=${id}`).then(() => {
                   const eventTarget = e.target as HTMLElement;
                   const parentElement =
                     eventTarget.parentElement as HTMLButtonElement;
