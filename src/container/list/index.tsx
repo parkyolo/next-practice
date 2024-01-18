@@ -4,6 +4,8 @@ import { Db } from 'mongodb';
 import Link from 'next/link';
 import DetailLink from './DetailLink';
 import ListItem from './ListItem';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 const List = async () => {
   // DB 연결
@@ -13,11 +15,15 @@ const List = async () => {
     .collection('post')
     .find()
     .toArray()) as Article[];
+  const session = await getServerSession(authOptions);
 
   return (
     <div className="list-bg">
       {/* 객체를 props로 넘겨주기 위해 직렬화 */}
-      <ListItem result={JSON.stringify(result)} />
+      <ListItem
+        result={JSON.stringify(result)}
+        session={JSON.stringify(session)}
+      />
     </div>
   );
 };
